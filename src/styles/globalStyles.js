@@ -5,7 +5,8 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     font-family: 'Arial', sans-serif;
-    background-color: #121212;
+    background: linear-gradient(to bottom right, #0b0c1e, #1e1e1e);
+    background-size: cover;
     color: #ffffff;
     display: flex;
     align-items: center;
