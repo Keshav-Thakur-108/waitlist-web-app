@@ -5,6 +5,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { FaUser, FaEnvelope, FaArrowRight } from 'react-icons/fa'; // Import icons
 import Popup from './Popup';
+import { db } from '../firebase';
+import { collection, addDoc, query, where, getDocs } from 'firebase/firestore';
 
 const schema = yup.object().shape({
   name: yup.string().required('Name is required'),
@@ -115,8 +117,33 @@ const Form = () => {
   const [showPopup, setShowPopup] = useState(false);
 
   const onSubmit = async (data) => {
-    // Here you’d send the data to the backend
-    setShowPopup(true);
+    console.log("Firestore DB:", db);
+    try {
+        // Create a query to check for existing emails
+        const q = query(
+          collection(db, "waitlist-entries"),
+          where("email", "==", data.email) // Assuming 'email' is the field you're checking
+        );
+  
+        // Execute the query
+        const querySnapshot = await getDocs(q);
+  
+        // Check if any document exists with the same email
+        if (!querySnapshot.empty) {
+          alert("This email is already on the waitlist!"); // Alert the user
+        } else {
+          // No duplicate found, proceed to add the new document
+          const docRef = await addDoc(collection(db, "waitlist-entries"), {
+            name: data.name,
+            email: data.email
+          });
+          console.log("Document written with ID: ", docRef.id);
+          // Show your confirmation popup
+          setShowPopup(true); // Show the confirmation popup
+        }
+      } catch (error) {
+        console.error("Error adding document: ", error); // Log any error
+      }
   };
 
   return (
