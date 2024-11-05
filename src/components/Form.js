@@ -25,9 +25,22 @@ const FormContainer = styled.div`
 `;
 
 const Title = styled.h2`
-  font-size: 1.8rem; /* Increase font size */
-  font-weight: bold; /* Make title bold */
-  margin-bottom: 1.5rem; /* Spacing below title */
+  font-size: 2.25rem; /* Increased font size for visibility */
+  font-weight: bold; 
+  margin-bottom: 3rem; /* Added margin-bottom for spacing */
+  line-height: 1.2; /* Adjust line height for better spacing */
+`;
+
+const TitleLine1 = styled.span`
+  display: block; /* Force line breaks */
+`;
+
+const TitleLine2 = styled.span`
+  display: block; /* Force line breaks */
+  font-size: 2.2rem; /* Slightly larger font size for emphasis */
+  background: linear-gradient(90deg, violet, red, orange, yellow, green, cyan, blue, purple); /* Gradient effect */
+  -webkit-background-clip: text; /* Clip the gradient to the text */
+  -webkit-text-fill-color: transparent; /* Fill text with gradient */
 `;
 
 const InputContainer = styled.div`
@@ -108,7 +121,10 @@ const Form = () => {
 
   return (
     <FormContainer>
-      <Title>Join the Waitlist for My AI Summarizer Product</Title>
+      <Title>
+        <TitleLine1>Join the Waitlist For</TitleLine1>
+        <TitleLine2>AI Summarizer Product</TitleLine2>
+      </Title>
       <form onSubmit={handleSubmit(onSubmit)}>
         <InputContainer>
           <Icon><FaUser /></Icon>
