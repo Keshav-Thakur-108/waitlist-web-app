@@ -14,9 +14,8 @@ const schema = yup.object().shape({
 });
 
 const FormContainer = styled.div`
-  padding: 2rem;
   border-radius: 8px;
-  max-width: 400px; /* Set a maximum width */
+  height: 100%
   width: 100%; /* Allow full width up to max-width */
   text-align: center;
   backdrop-filter: blur(8px); /* Blurring effect for the form */
