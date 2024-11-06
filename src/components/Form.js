@@ -7,6 +7,7 @@ import { FaUser, FaEnvelope, FaArrowRight } from 'react-icons/fa'; // Import ico
 import Popup from './Popup';
 import { db } from '../firebase';
 import { collection, addDoc, query, where, getDocs } from 'firebase/firestore';
+import firebase from 'firebase/compat/app';
 
 const schema = yup.object().shape({
   name: yup.string().required('Name is required'),
@@ -134,7 +135,8 @@ const Form = () => {
           // No duplicate found, proceed to add the new document
           const docRef = await addDoc(collection(db, "waitlist-entries"), {
             name: data.name,
-            email: data.email
+            email: data.email,
+            joinedAt: new Date()
           });
           console.log("Document written with ID: ", docRef.id);
           // Show your confirmation popup
