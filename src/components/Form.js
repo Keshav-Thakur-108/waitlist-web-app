@@ -149,7 +149,7 @@ const Form = () => {
     <FormContainer>
       <Title>
         <TitleLine1>Join the Waitlist For</TitleLine1>
-        <TitleLine2>AI Summarizer Product</TitleLine2>
+        <TitleLine2>AI Summarizer Extension</TitleLine2>
       </Title>
       <form onSubmit={handleSubmit(onSubmit)}>
         <InputContainer>
